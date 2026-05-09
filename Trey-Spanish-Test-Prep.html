@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#C2451F" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Spanish" />
+<title>Trey's Spanish — Test Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,600;9..144,700;9..144,900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%2280%22 font-size=%2280%22>🌶️</text></svg>">
+<style>
+  :root {
+    --bg: #FBF4E6;
+    --bg-card: #FFF8EA;
+    --bg-elev: #FFFCF4;
+    --ink: #2A1A0E;
+    --ink-muted: #6B5949;
+    --primary: #C2451F;
+    --primary-dark: #9A330F;
+    --teal: #1A6B66;
+    --teal-dark: #0F4D49;
+    --mustard: #E8B33A;
+    --green: #4F8C2F;
+    --red: #B33A2B;
+    --line: rgba(42,26,14,0.12);
+    --line-strong: rgba(42,26,14,0.22);
+    --shadow: 0 1px 2px rgba(42,26,14,0.06), 0 8px 24px rgba(42,26,14,0.08);
+    --shadow-lg: 0 4px 8px rgba(42,26,14,0.08), 0 24px 48px rgba(42,26,14,0.12);
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body { background: var(--bg); color: var(--ink); font-family: 'DM Sans', system-ui, sans-serif; font-size: 17px; line-height: 1.5; }
+  body {
+    background-image:
+      radial-gradient(circle at 8% 12%, rgba(232, 179, 58, 0.10) 0px, transparent 35%),
+      radial-gradient(circle at 92% 88%, rgba(26, 107, 102, 0.08) 0px, transparent 40%);
+    min-height: 100vh;
+    padding-bottom: 80px;
+  }
+  .container { max-width: 720px; margin: 0 auto; padding: 18px 16px env(safe-area-inset-bottom); }
+  header { padding-top: env(safe-area-inset-top); margin-bottom: 18px; }
+  .greeting {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "SOFT" 100, "opsz" 144;
+    font-weight: 900;
+    font-size: clamp(28px, 7vw, 36px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .greeting .accent { color: var(--primary); font-style: italic; font-weight: 700; }
+  .subtitle { color: var(--ink-muted); font-size: 14px; margin-top: 4px; }
+
+  .ready-card {
+    background: linear-gradient(135deg, #fff8ea, #fbf0d8);
+    border: 1.5px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    margin-top: 14px;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+  .ready-card::before {
+    content: ""; position: absolute; right: -30px; top: -30px;
+    width: 120px; height: 120px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,179,58,0.25), transparent 70%);
+  }
+  .ready-card .label { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); }
+  .ready-card .pct {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "SOFT" 80, "opsz" 144;
+    font-weight: 900;
+    font-size: 44px;
+    color: var(--primary);
+    line-height: 1;
+    margin-top: 4px;
+  }
+  .ready-card .status { font-size: 14px; color: var(--ink-muted); margin-top: 6px; }
+  .ready-card.ready { background: linear-gradient(135deg, #e7f4dd, #d3ebc4); border-color: rgba(79, 140, 47, 0.3); }
+  .ready-card.ready .pct { color: var(--green); }
+  .progress-bar { height: 8px; background: rgba(42,26,14,0.08); border-radius: 99px; margin-top: 12px; overflow: hidden; }
+  .progress-bar > div {
+    height: 100%; background: linear-gradient(90deg, var(--mustard), var(--primary));
+    border-radius: 99px; transition: width 0.5s ease;
+  }
+  .ready-card.ready .progress-bar > div { background: linear-gradient(90deg, #84c25c, var(--green)); }
+
+  nav.tabs {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    margin: 18px 0;
+  }
+  nav.tabs button {
+    background: var(--bg-card); border: 1.5px solid var(--line); border-radius: var(--radius-sm);
+    padding: 12px 8px; font-family: inherit; font-size: 13px; font-weight: 600; color: var(--ink-muted);
+    cursor: pointer; transition: all 0.15s ease;
+  }
+  nav.tabs button.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  nav.tabs button:active { transform: scale(0.97); }
+
+  .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
+  .stat-card {
+    background: var(--bg-card); border: 1.5px solid var(--line);
+    border-radius: var(--radius-sm); padding: 12px;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .stat-card .stat-label { font-size: 11px; color: var(--ink-muted); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+  .stat-card .stat-value {
+    font-family: 'Fraunces', serif; font-weight: 700;
+    font-size: 22px; color: var(--ink); line-height: 1.1;
+  }
+  .stat-card .stat-sub { font-size: 12px; color: var(--ink-muted); }
+  .stat-card.done { background: linear-gradient(135deg, #e7f4dd, #d3ebc4); border-color: rgba(79, 140, 47, 0.3); }
+  .stat-card.done .stat-value { color: var(--green); }
+
+  /* Home action cards */
+  .action-grid { display: grid; gap: 12px; margin-top: 16px; }
+  .action-card {
+    background: var(--bg-card); border: 1.5px solid var(--line); border-radius: var(--radius);
+    padding: 18px; cursor: pointer; transition: transform 0.12s ease, box-shadow 0.12s ease;
+    display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center;
+    text-align: left; width: 100%; font-family: inherit; color: inherit;
+  }
+  .action-card:active { transform: scale(0.99); box-shadow: var(--shadow-lg); }
+  .action-card .ac-title { font-family: 'Fraunces', serif; font-weight: 700; font-size: 22px; line-height: 1.1; }
+  .action-card .ac-desc { font-size: 14px; color: var(--ink-muted); margin-top: 4px; }
+  .action-card .ac-meta { font-size: 12px; color: var(--ink-muted); margin-top: 8px; font-weight: 600; }
+  .action-card .ac-arrow {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--ink); color: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 600;
+  }
+  .action-card.primary { background: var(--primary); color: white; border-color: var(--primary); }
+  .action-card.primary .ac-desc { color: rgba(255,255,255,0.85); }
+  .action-card.primary .ac-meta { color: rgba(255,255,255,0.75); }
+  .action-card.primary .ac-arrow { background: white; color: var(--primary); }
+  .action-card.test-card { background: var(--teal); color: white; border-color: var(--teal); }
+  .action-card.test-card .ac-desc, .action-card.test-card .ac-meta { color: rgba(255,255,255,0.85); }
+  .action-card.test-card .ac-arrow { background: white; color: var(--teal); }
+
+  /* Question card */
+  .q-frame { margin-top: 8px; }
+  .q-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; color: var(--ink-muted); font-weight: 600;
+    margin-bottom: 10px; padding: 0 4px;
+  }
+  .q-meta .streak { display: inline-flex; align-items: center; gap: 4px; }
+  .q-meta .streak.hot { color: var(--primary); }
+
+  .q-card {
+    background: var(--bg-elev); border: 1.5px solid var(--line);
+    border-radius: var(--radius); padding: 28px 22px;
+    box-shadow: var(--shadow);
+    min-height: 200px; display: flex; flex-direction: column; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .q-card.flipped { background: linear-gradient(135deg, #fff8ea, #fbf0d8); }
+  .q-card.correct { background: linear-gradient(135deg, #e7f4dd, #d3ebc4); border-color: rgba(79, 140, 47, 0.3); }
+  .q-card.incorrect { background: linear-gradient(135deg, #fde9e6, #f6d4ce); border-color: rgba(179, 58, 43, 0.3); }
+  .q-prompt-tag {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-muted); margin-bottom: 10px;
+  }
+  .q-prompt {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "SOFT" 100, "opsz" 144;
+    font-weight: 700;
+    font-size: clamp(26px, 7vw, 34px);
+    line-height: 1.15;
+    color: var(--ink);
+  }
+  .q-prompt .small { font-size: 0.65em; color: var(--ink-muted); display: block; margin-top: 6px; font-weight: 400; font-style: italic; }
+  .q-prompt .pronoun-tag {
+    display: inline-block;
+    font-size: 0.5em;
+    background: var(--ink); color: var(--bg);
+    padding: 4px 10px; border-radius: 99px;
+    vertical-align: middle; margin-left: 8px;
+    font-family: 'DM Sans', sans-serif; font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .q-answer { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--line-strong); }
+  .q-answer .label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 4px; }
+  .q-answer .answer-text {
+    font-family: 'Fraunces', serif; font-weight: 700;
+    font-size: clamp(22px, 6vw, 28px);
+    color: var(--ink);
+  }
+  .q-answer .answer-text .accent { background: var(--mustard); padding: 0 4px; border-radius: 4px; }
+  .q-answer .note { font-size: 14px; color: var(--ink-muted); margin-top: 6px; font-style: italic; }
+  .q-your { font-size: 14px; color: var(--ink-muted); margin-top: 8px; }
+  .q-your .you-said { font-weight: 600; }
+
+  /* Input */
+  .input-row {
+    display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-top: 14px;
+  }
+  input[type="text"] {
+    font-family: inherit; font-size: 18px;
+    padding: 14px 16px; border-radius: var(--radius-sm);
+    border: 1.5px solid var(--line-strong); background: var(--bg-elev);
+    color: var(--ink); width: 100%;
+    transition: border-color 0.15s ease;
+  }
+  input[type="text"]:focus { outline: none; border-color: var(--primary); }
+  .accent-bar {
+    display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px;
+  }
+  .accent-bar button {
+    background: var(--bg-card); border: 1.5px solid var(--line); border-radius: 8px;
+    padding: 8px 12px; font-family: inherit; font-size: 17px; font-weight: 600;
+    color: var(--ink); cursor: pointer; min-width: 38px;
+  }
+  .accent-bar button:active { background: var(--mustard); }
+  .accent-bar button.bigger { font-size: 14px; }
+
+  /* Buttons */
+  .btn {
+    font-family: inherit; font-size: 16px; font-weight: 600;
+    border-radius: var(--radius-sm); cursor: pointer; border: 1.5px solid transparent;
+    padding: 14px 18px; transition: transform 0.1s ease;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn.primary { background: var(--primary); color: white; border-color: var(--primary); }
+  .btn.dark { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .btn.outline { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+  .btn.teal { background: var(--teal); color: white; border-color: var(--teal); }
+  .btn.full { width: 100%; }
+  .btn-row { display: flex; gap: 8px; margin-top: 14px; }
+  .btn-row .btn { flex: 1; }
+
+  /* Choice buttons (for matching mode) */
+  .choice-grid { display: grid; gap: 8px; margin-top: 14px; }
+  .choice {
+    text-align: left;
+    background: var(--bg-elev); border: 1.5px solid var(--line);
+    border-radius: var(--radius-sm); padding: 14px 16px;
+    font-family: inherit; font-size: 17px; font-weight: 500;
+    color: var(--ink); cursor: pointer;
+    transition: all 0.12s ease;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .choice .badge {
+    background: var(--ink); color: var(--bg);
+    width: 28px; height: 28px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; flex-shrink: 0;
+  }
+  .choice:active { transform: scale(0.98); }
+  .choice.right { background: linear-gradient(135deg, #e7f4dd, #d3ebc4); border-color: var(--green); }
+  .choice.right .badge { background: var(--green); }
+  .choice.wrong { background: linear-gradient(135deg, #fde9e6, #f6d4ce); border-color: var(--red); }
+  .choice.wrong .badge { background: var(--red); }
+  .choice.disabled { pointer-events: none; opacity: 0.6; }
+
+  /* Reference / Cheat sheet */
+  .ref-section { margin-top: 18px; }
+  .ref-h {
+    font-family: 'Fraunces', serif; font-weight: 700;
+    font-size: 22px; color: var(--ink); margin-bottom: 10px;
+    border-bottom: 2px solid var(--mustard); padding-bottom: 4px; display: inline-block;
+  }
+  .ref-table {
+    width: 100%; border-collapse: separate; border-spacing: 0;
+    background: var(--bg-card); border: 1.5px solid var(--line); border-radius: var(--radius-sm);
+    overflow: hidden; font-size: 15px;
+  }
+  .ref-table th, .ref-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--line); }
+  .ref-table th { background: var(--bg-elev); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-muted); }
+  .ref-table tr:last-child td { border-bottom: none; }
+  .ref-table td .stem { font-weight: 700; color: var(--primary); }
+  .ref-table td .note { color: var(--ink-muted); font-size: 13px; font-style: italic; }
+  .endings-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    background: var(--bg-card); border: 2px solid var(--ink); border-radius: var(--radius-sm);
+    overflow: hidden; font-size: 17px; margin-top: 10px;
+  }
+  .endings-grid > div {
+    padding: 14px 12px; border: 1px solid var(--ink); margin: -1px;
+    text-align: center; font-family: 'Fraunces', serif; font-weight: 700;
+  }
+  .endings-grid > div span { color: var(--primary); }
+  .ref-rule {
+    background: var(--bg-card); border-left: 4px solid var(--mustard);
+    padding: 12px 14px; border-radius: 6px; margin-top: 10px; font-size: 15px;
+  }
+  .ref-rule strong { color: var(--primary); }
+
+  /* Mock test */
+  .test-progress {
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--bg-card); border: 1.5px solid var(--line); border-radius: var(--radius-sm);
+    padding: 12px 14px; margin-bottom: 12px;
+  }
+  .test-progress .pill {
+    font-size: 13px; font-weight: 700; color: var(--ink-muted);
+  }
+  .test-progress .score-pill {
+    background: var(--ink); color: var(--bg); padding: 4px 10px; border-radius: 99px;
+    font-size: 13px; font-weight: 700;
+  }
+  .test-results {
+    background: var(--bg-card); border: 1.5px solid var(--line);
+    border-radius: var(--radius); padding: 22px;
+    text-align: center;
+  }
+  .test-results .big-score {
+    font-family: 'Fraunces', serif; font-weight: 900;
+    font-size: 64px; color: var(--primary); line-height: 1;
+  }
+  .test-results .verdict {
+    font-family: 'Fraunces', serif; font-weight: 700;
+    font-size: 22px; margin-top: 8px;
+  }
+  .test-results .breakdown { margin-top: 18px; text-align: left; font-size: 14px; }
+  .test-results .breakdown .row {
+    display: flex; justify-content: space-between; gap: 10px; padding: 6px 0; border-top: 1px solid var(--line);
+  }
+  .test-results .breakdown .row.miss { color: var(--red); }
+  .test-results .breakdown .row.hit { color: var(--green); }
+
+  /* Confetti */
+  .confetti { position: fixed; top: -10px; pointer-events: none; z-index: 100; font-size: 24px; animation: fall 1.4s linear forwards; }
+  @keyframes fall {
+    0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* Reset bar */
+  .reset-bar {
+    margin-top: 20px; padding-top: 14px;
+    border-top: 1px dashed var(--line-strong);
+    text-align: center;
+  }
+  .reset-bar button {
+    background: none; border: none; color: var(--ink-muted);
+    font-family: inherit; font-size: 13px; cursor: pointer;
+    text-decoration: underline; padding: 8px;
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    background: var(--ink); color: var(--bg); padding: 12px 18px;
+    border-radius: 99px; font-weight: 600; font-size: 14px;
+    box-shadow: var(--shadow-lg); z-index: 200;
+    animation: toast-in 0.25s ease, toast-out 0.25s ease 1.6s forwards;
+  }
+  @keyframes toast-in { from { transform: translate(-50%, 20px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+  @keyframes toast-out { to { transform: translate(-50%, 20px); opacity: 0; } }
+
+  /* Streak pulse */
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+  }
+  .pulse { animation: pulse 0.4s ease; }
+
+  @media (min-width: 600px) {
+    nav.tabs { grid-template-columns: repeat(6, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1 class="greeting">¡Hola, <span class="accent">Trey</span>!</h1>
+    <p class="subtitle">Spanish test prep — Monday's the day. Let's get you ready. 🌶️</p>
+
+    <div class="ready-card" id="readyCard">
+      <div class="label">Test Ready</div>
+      <div class="pct" id="readyPct">0%</div>
+      <div class="status" id="readyStatus">Master 90% of all items + pass a mock test</div>
+      <div class="progress-bar"><div id="readyBar" style="width:0%"></div></div>
+    </div>
+
+    <div class="stat-grid" id="statGrid"></div>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <button data-tab="home" class="active">Home</button>
+    <button data-tab="vocab">Vocab</button>
+    <button data-tab="stems">Stems</button>
+    <button data-tab="conj">Conjug.</button>
+    <button data-tab="test">Mock Test</button>
+    <button data-tab="ref">Cheat Sheet</button>
+  </nav>
+
+  <main id="content"></main>
+
+  <div class="reset-bar">
+    <button onclick="resetAll()">Reset all progress</button>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+/* =========================================================================
+   DATA
+   ========================================================================= */
+
+const VOCAB = [
+  // Restaurant phrases
+  { id:"v01", en:"a table for four", es:"una mesa para cuatro", group:"Phrases" },
+  { id:"v02", en:"waiter", es:"el camarero", group:"Phrases" },
+  { id:"v03", en:"excuse me, sir/miss", es:"disculpe", group:"Phrases" },
+  { id:"v04", en:"for me", es:"para mí", group:"Phrases" },
+  { id:"v05", en:"I'd like…", es:"me gustaría", group:"Phrases" },
+  { id:"v06", en:"I need…", es:"necesito", group:"Phrases" },
+  { id:"v07", en:"Can I have… (you give me)", es:"me puede dar", group:"Phrases" },
+  { id:"v08", en:"Would you bring me…", es:"me trae", group:"Phrases" },
+  { id:"v09", en:"What would you like?", es:"¿qué le gustaría?", group:"Phrases" },
+  { id:"v10", en:"What's it like?", es:"¿cómo es?", group:"Phrases" },
+  { id:"v11", en:"What is it?", es:"¿qué es?", group:"Phrases" },
+  { id:"v12", en:"How is it?", es:"¿cómo está?", group:"Phrases" },
+  { id:"v13", en:"It's yummy / delicious", es:"está delicioso", group:"Phrases" },
+  { id:"v14", en:"Enjoy your meal!", es:"buen provecho", group:"Phrases" },
+  { id:"v15", en:"the bill / check", es:"la cuenta", group:"Phrases" },
+  { id:"v16", en:"to leave a tip", es:"dejar una propina", group:"Phrases" },
+  // Foods
+  { id:"v17", en:"beans", es:"los frijoles", group:"Food" },
+  { id:"v18", en:"a well-done steak", es:"un bistec bien cocido", group:"Food" },
+  { id:"v19", en:"seafood", es:"los mariscos", group:"Food" },
+  { id:"v20", en:"chicken cooked on the grill", es:"pollo a la parrilla", group:"Food" },
+  { id:"v21", en:"a BBQ", es:"una barbacoa", group:"Food" },
+  { id:"v22", en:"sausage", es:"la salchicha", group:"Food" },
+  { id:"v23", en:"beef", es:"la carne de res", group:"Food" },
+  { id:"v24", en:"pork", es:"el cerdo", group:"Food" },
+  { id:"v25", en:"avocado", es:"el aguacate", group:"Food" },
+  { id:"v26", en:"corn", es:"el maíz", group:"Food" },
+  { id:"v27", en:"onion", es:"la cebolla", group:"Food" },
+  { id:"v28", en:"garlic", es:"el ajo", group:"Food" },
+  { id:"v29", en:"a portion of…", es:"una porción de", group:"Food" },
+  // Drinks/condiments
+  { id:"v30", en:"with/without fizz (carbonation)", es:"con/sin gas", group:"Drinks & Extras" },
+  { id:"v31", en:"with/without ice", es:"con/sin hielo", group:"Drinks & Extras" },
+  { id:"v32", en:"olive oil", es:"el aceite de oliva", group:"Drinks & Extras" },
+  { id:"v33", en:"salt", es:"la sal", group:"Drinks & Extras" },
+  { id:"v34", en:"sugar", es:"el azúcar", group:"Drinks & Extras" },
+  { id:"v35", en:"hot (spicy) sauce", es:"la salsa picante", group:"Drinks & Extras" },
+  { id:"v36", en:"sour cream", es:"la crema agria", group:"Drinks & Extras" },
+  // Place setting
+  { id:"v37", en:"napkin", es:"la servilleta", group:"Place Setting" },
+  { id:"v38", en:"fork", es:"el tenedor", group:"Place Setting" },
+  { id:"v39", en:"spoon", es:"la cuchara", group:"Place Setting" },
+  { id:"v40", en:"knife", es:"el cuchillo", group:"Place Setting" },
+  { id:"v41", en:"glass of water", es:"un vaso de agua", group:"Place Setting" },
+  { id:"v42", en:"cup of tea", es:"una taza de té", group:"Place Setting" },
+  { id:"v43", en:"plate / dish", es:"el plato", group:"Place Setting" },
+  // Cuisines
+  { id:"v44", en:"Chinese food", es:"comida china", group:"Cuisines" },
+  { id:"v45", en:"Italian food", es:"comida italiana", group:"Cuisines" },
+  { id:"v46", en:"vegetarian food", es:"comida vegetariana", group:"Cuisines" },
+  { id:"v47", en:"Mexican food", es:"comida mexicana", group:"Cuisines" },
+  { id:"v48", en:"Spanish food", es:"comida española", group:"Cuisines" },
+];
+
+// Verbs: irregular preterite stems
+const VERBS = [
+  { inf:"andar",     stem:"anduv-", note:"" },
+  { inf:"caber",     stem:"cup-",   note:"" },
+  { inf:"conducir",  stem:"conduj-", note:"-j stem: ellos = condujeron (no i)" },
+  { inf:"decir",     stem:"dij-",   note:"-j stem: ellos = dijeron (no i)" },
+  { inf:"estar",     stem:"estuv-", note:"" },
+  { inf:"hacer",     stem:"hic-",   note:"él/ella/Ud. = HIZO (z, not c)" },
+  { inf:"poder",     stem:"pud-",   note:"" },
+  { inf:"poner",     stem:"pus-",   note:"" },
+  { inf:"producir",  stem:"produj-", note:"-j stem: ellos = produjeron (no i)" },
+  { inf:"querer",    stem:"quis-",  note:"" },
+  { inf:"saber",     stem:"sup-",   note:"" },
+  { inf:"tener",     stem:"tuv-",   note:"" },
+  { inf:"traducir",  stem:"traduj-", note:"-j stem: ellos = tradujeron (no i)" },
+  { inf:"traer",     stem:"traj-",  note:"-j stem: ellos = trajeron (no i)" },
+  { inf:"venir",     stem:"vin-",   note:"" },
+];
+
+// Build conjugations from stems + endings
+const PERSONS = [
+  { key:"yo",        label:"yo",            ending:"e" },
+  { key:"tu",        label:"tú",            ending:"iste" },
+  { key:"el",        label:"él/ella/Ud.",   ending:"o" },
+  { key:"nos",       label:"nosotros",      ending:"imos" },
+  { key:"vos",       label:"vosotros",      ending:"isteis" },
+  { key:"ellos",     label:"ellos/ellas/Uds.", ending:"ieron" },
+];
+
+function buildConjugation(verb, person) {
+  // Trim trailing dash from stem
+  let s = verb.stem.replace(/-$/, "");
+  let e = person.ending;
+
+  // Special case: hacer 3rd singular -> hizo (c -> z)
+  if (verb.inf === "hacer" && person.key === "el") {
+    return "hizo";
+  }
+  // -j stems: drop the i in -ieron
+  const jStems = ["dij","traj","conduj","produj","traduj"];
+  if (person.key === "ellos" && jStems.includes(s)) {
+    e = "eron";
+  }
+  return s + e;
+}
+
+const CONJUGATIONS = [];
+VERBS.forEach(v => {
+  PERSONS.forEach(p => {
+    CONJUGATIONS.push({
+      id: `${v.inf}-${p.key}`,
+      verb: v.inf,
+      person: p.label,
+      personKey: p.key,
+      stem: v.stem,
+      answer: buildConjugation(v, p),
+      note: v.note,
+    });
+  });
+});
+
+const STEM_PAIRS = VERBS.map(v => ({
+  id: `s-${v.inf}`,
+  inf: v.inf,
+  stem: v.stem,
+  note: v.note,
+}));
+
+/* =========================================================================
+   STATE
+   ========================================================================= */
+
+const STORAGE_KEY = "treySpanish_v1";
+const MASTERY_THRESHOLD = 2;   // streak needed for "mastered"
+const READY_PCT = 0.9;         // 90% mastered = ready
+const TEST_PASS = 0.85;        // 85% on mock test = pass
+const TEST_LENGTH = 25;
+
+const defaultProgress = () => {
+  const items = {};
+  VOCAB.forEach(v => items[v.id] = { streak:0, total:0, correct:0 });
+  STEM_PAIRS.forEach(s => items[s.id] = { streak:0, total:0, correct:0 });
+  CONJUGATIONS.forEach(c => items[c.id] = { streak:0, total:0, correct:0 });
+  return items;
+};
+
+let state = {
+  progress: defaultProgress(),
+  vocabDirection: "en-es",  // or "es-en"
+  testHistory: [],          // [{date, score, total}]
+};
+
+function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+function load() {
+  try {
+    const s = localStorage.getItem(STORAGE_KEY);
+    if (s) {
+      const loaded = JSON.parse(s);
+      // Merge in any new items in case the data set grew
+      const baseProgress = defaultProgress();
+      state = {
+        ...state,
+        ...loaded,
+        progress: { ...baseProgress, ...loaded.progress },
+      };
+    }
+  } catch (e) { console.warn("Load failed", e); }
+}
+load();
+
+/* =========================================================================
+   TEXT MATCHING (lenient)
+   ========================================================================= */
+function normalize(s) {
+  return (s || "").toString().toLowerCase().trim()
+    .replace(/[áàâä]/g,"a").replace(/[éèêë]/g,"e").replace(/[íìîï]/g,"i")
+    .replace(/[óòôö]/g,"o").replace(/[úùûü]/g,"u").replace(/ñ/g,"n")
+    .replace(/[¿¡?!.,;:]/g,"")
+    .replace(/\s+/g," ");
+}
+function answerMatches(input, answer) {
+  if (normalize(input) === normalize(answer)) return true;
+  // Allow either side of a slash to count (e.g. "con/sin gas" → "con gas" OK)
+  if (answer.includes("/")) {
+    const variants = [];
+    const parts = answer.split(" ");
+    // Permute slash options
+    function expand(arr, idx, current) {
+      if (idx === arr.length) { variants.push(current.trim()); return; }
+      const w = arr[idx];
+      if (w.includes("/")) {
+        w.split("/").forEach(o => expand(arr, idx+1, current + " " + o));
+      } else expand(arr, idx+1, current + " " + w);
+    }
+    expand(parts, 0, "");
+    return variants.some(v => normalize(input) === normalize(v));
+  }
+  return false;
+}
+// Highlight accents/special chars in the answer (so Trey sees what he was missing)
+function highlightAccents(answer) {
+  return answer.replace(/[áéíóúñ¿¡üÁÉÍÓÚÑÜ]/g, c => `<span class="accent">${c}</span>`);
+}
+
+/* =========================================================================
+   STATS
+   ========================================================================= */
+function categoryStats(ids) {
+  let mastered = 0, seen = 0;
+  ids.forEach(id => {
+    const p = state.progress[id];
+    if (!p) return;
+    if (p.streak >= MASTERY_THRESHOLD) mastered++;
+    if (p.total > 0) seen++;
+  });
+  return { mastered, seen, total: ids.length, pct: ids.length ? mastered / ids.length : 0 };
+}
+function vocabIds()  { return VOCAB.map(v => v.id); }
+function stemIds()   { return STEM_PAIRS.map(s => s.id); }
+function conjIds()   { return CONJUGATIONS.map(c => c.id); }
+function allIds()    { return [...vocabIds(), ...stemIds(), ...conjIds()]; }
+
+function readyData() {
+  const v = categoryStats(vocabIds());
+  const s = categoryStats(stemIds());
+  const c = categoryStats(conjIds());
+  const all = categoryStats(allIds());
+  const passedTests = state.testHistory.filter(t => t.score / t.total >= TEST_PASS).length;
+  // Composite ready %: 70% mastery of all + 30% test passing weight
+  const masteryComponent = Math.min(all.pct / READY_PCT, 1) * 0.7;
+  const testComponent = Math.min(passedTests / 1, 1) * 0.3;
+  const readyPct = Math.round((masteryComponent + testComponent) * 100);
+  const ready = all.pct >= READY_PCT && passedTests >= 1;
+  return { v, s, c, all, passedTests, readyPct, ready };
+}
+
+/* =========================================================================
+   ITEM PICKING (weighted)
+   ========================================================================= */
+let lastPicked = null;
+function pickWeighted(ids) {
+  // Weight: missed recently (streak=0) → 5; partial → 3-2; mastered → 1
+  const weighted = ids.map(id => {
+    const p = state.progress[id] || { streak:0, total:0 };
+    let w;
+    if (p.total === 0) w = 4;          // never seen
+    else if (p.streak === 0) w = 5;    // just missed
+    else if (p.streak === 1) w = 3;    // one more right and it's mastered
+    else w = 1;                         // mastered, occasional review
+    if (id === lastPicked) w = w / 4;   // avoid immediate repeat
+    return { id, w };
+  });
+  const total = weighted.reduce((s,x) => s + x.w, 0);
+  let r = Math.random() * total;
+  for (const x of weighted) {
+    r -= x.w;
+    if (r <= 0) { lastPicked = x.id; return x.id; }
+  }
+  lastPicked = weighted[weighted.length-1].id;
+  return lastPicked;
+}
+function recordAnswer(id, correct) {
+  const p = state.progress[id] || { streak:0, total:0, correct:0 };
+  p.total += 1;
+  if (correct) { p.streak += 1; p.correct += 1; }
+  else { p.streak = 0; }
+  state.progress[id] = p;
+  save();
+}
+
+/* =========================================================================
+   RENDERING
+   ========================================================================= */
+const $ = id => document.getElementById(id);
+const content = $("content");
+let currentTab = "home";
+
+function setTab(t) {
+  currentTab = t;
+  document.querySelectorAll("nav.tabs button").forEach(b => {
+    b.classList.toggle("active", b.dataset.tab === t);
+  });
+  renderHeaderStats();
+  if      (t === "home")  renderHome();
+  else if (t === "vocab") renderVocabPractice();
+  else if (t === "stems") renderStemsPractice();
+  else if (t === "conj")  renderConjPractice();
+  else if (t === "test")  renderTestStart();
+  else if (t === "ref")   renderReference();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function renderHeaderStats() {
+  const r = readyData();
+  $("readyPct").textContent = r.readyPct + "%";
+  $("readyBar").style.width = r.readyPct + "%";
+  const card = $("readyCard");
+  if (r.ready) {
+    card.classList.add("ready");
+    $("readyStatus").textContent = "🎉 You're test ready! Keep reviewing to stay sharp.";
+  } else {
+    card.classList.remove("ready");
+    const masteredAll = r.all.mastered;
+    const totalAll = r.all.total;
+    const need = Math.max(0, Math.ceil(totalAll * READY_PCT) - masteredAll);
+    let msg = "";
+    if (r.all.pct < READY_PCT) msg = `Master ${need} more item${need===1?"":"s"} to hit 90%`;
+    else if (r.passedTests < 1) msg = `Take one mock test (85%+) to lock it in`;
+    $("readyStatus").textContent = msg;
+  }
+
+  const grid = $("statGrid");
+  grid.innerHTML = "";
+  const sections = [
+    { name:"Vocab",      stats:r.v },
+    { name:"Stems",      stats:r.s },
+    { name:"Conjugat.",  stats:r.c },
+  ];
+  sections.forEach(sec => {
+    const masteredAll = sec.stats.mastered === sec.stats.total && sec.stats.total > 0;
+    grid.innerHTML += `
+      <div class="stat-card ${masteredAll ? "done" : ""}">
+        <div class="stat-label">${sec.name}</div>
+        <div class="stat-value">${sec.stats.mastered}<span style="color:var(--ink-muted);font-weight:400;">/${sec.stats.total}</span></div>
+        <div class="stat-sub">${Math.round(sec.stats.pct*100)}% mastered</div>
+      </div>
+    `;
+  });
+}
+
+function renderHome() {
+  const r = readyData();
+  let testNote = "Take a 25-question mock test";
+  if (state.testHistory.length > 0) {
+    const last = state.testHistory[state.testHistory.length-1];
+    const pct = Math.round(last.score / last.total * 100);
+    testNote = `Last attempt: ${pct}% • Take another to improve`;
+  }
+  content.innerHTML = `
+    <div class="action-grid">
+      <button class="action-card primary" onclick="setTab('vocab')">
+        <div>
+          <div class="ac-title">Vocabulary</div>
+          <div class="ac-desc">${VOCAB.length} restaurant words & phrases</div>
+          <div class="ac-meta">${r.v.mastered} of ${r.v.total} mastered</div>
+        </div>
+        <div class="ac-arrow">→</div>
+      </button>
+
+      <button class="action-card" onclick="setTab('stems')">
+        <div>
+          <div class="ac-title">Verb Stems</div>
+          <div class="ac-desc">Match the 15 irregular preterite stems</div>
+          <div class="ac-meta">${r.s.mastered} of ${r.s.total} mastered</div>
+        </div>
+        <div class="ac-arrow">→</div>
+      </button>
+
+      <button class="action-card" onclick="setTab('conj')">
+        <div>
+          <div class="ac-title">Conjugation Drills</div>
+          <div class="ac-desc">Type the preterite form (15 verbs × 6 persons)</div>
+          <div class="ac-meta">${r.c.mastered} of ${r.c.total} mastered</div>
+        </div>
+        <div class="ac-arrow">→</div>
+      </button>
+
+      <button class="action-card test-card" onclick="setTab('test')">
+        <div>
+          <div class="ac-title">Mock Test</div>
+          <div class="ac-desc">${testNote}</div>
+          <div class="ac-meta">Tests passed (85%+): ${r.passedTests}</div>
+        </div>
+        <div class="ac-arrow">→</div>
+      </button>
+
+      <button class="action-card" onclick="setTab('ref')">
+        <div>
+          <div class="ac-title">Cheat Sheet</div>
+          <div class="ac-desc">Stems, endings, tricky rules — quick reference</div>
+        </div>
+        <div class="ac-arrow">→</div>
+      </button>
+    </div>
+  `;
+}
+
+/* =========================================================================
+   VOCAB MODE
+   ========================================================================= */
+let vocabState = null;
+
+function renderVocabPractice(forceNew=true) {
+  if (forceNew) {
+    const id = pickWeighted(vocabIds());
+    const item = VOCAB.find(v => v.id === id);
+    vocabState = { item, revealed:false, lastInput:"", lastCorrect:null };
+  }
+  const { item, revealed, lastInput, lastCorrect } = vocabState;
+  const dir = state.vocabDirection;
+  const prompt = dir === "en-es" ? item.en : item.es;
+  const answer = dir === "en-es" ? item.es : item.en;
+  const promptLabel = dir === "en-es" ? "English" : "Español";
+  const answerLabel = dir === "en-es" ? "Español" : "English";
+
+  const p = state.progress[item.id] || { streak:0, total:0 };
+  const streakClass = p.streak >= 1 ? "hot" : "";
+
+  let cardClass = "";
+  if (revealed) cardClass = lastCorrect ? "correct" : "incorrect";
+
+  content.innerHTML = `
+    <div class="q-frame">
+      <div class="q-meta">
+        <div>Vocab • ${item.group}</div>
+        <div class="streak ${streakClass}">${p.streak >= 1 ? "🔥" : "•"} streak: ${p.streak}</div>
+      </div>
+
+      <div class="q-card ${cardClass}">
+        <div class="q-prompt-tag">${promptLabel}</div>
+        <div class="q-prompt">${prompt}</div>
+
+        ${revealed ? `
+          <div class="q-answer">
+            <div class="label">${answerLabel}</div>
+            <div class="answer-text">${highlightAccents(answer)}</div>
+            ${lastCorrect===false && lastInput ? `<div class="q-your">You wrote: <span class="you-said">${escapeHtml(lastInput)}</span></div>` : ""}
+          </div>
+        ` : ""}
+      </div>
+
+      ${!revealed ? `
+        <div class="input-row">
+          <input type="text" id="vocabInput" placeholder="Type your answer in ${answerLabel}…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        </div>
+        ${dir === "en-es" ? renderAccentBar("vocabInput") : ""}
+        <div class="btn-row">
+          <button class="btn primary full" onclick="submitVocab()">Check</button>
+        </div>
+        <div class="btn-row">
+          <button class="btn outline full" onclick="skipVocab()">Don't know — show me</button>
+        </div>
+      ` : `
+        <div class="btn-row">
+          <button class="btn dark full" onclick="renderVocabPractice(true)">Next →</button>
+        </div>
+      `}
+
+      <div class="btn-row">
+        <button class="btn outline" onclick="toggleVocabDirection()">
+          ⇄ Switch to ${dir === "en-es" ? "ES → EN" : "EN → ES"}
+        </button>
+      </div>
+    </div>
+  `;
+  if (!revealed) {
+    setTimeout(() => {
+      const inp = $("vocabInput");
+      if (inp) {
+        inp.focus();
+        inp.addEventListener("keydown", e => { if (e.key === "Enter") submitVocab(); });
+      }
+    }, 50);
+  }
+}
+
+window.submitVocab = function() {
+  const input = $("vocabInput").value;
+  const { item } = vocabState;
+  const dir = state.vocabDirection;
+  const answer = dir === "en-es" ? item.es : item.en;
+  const correct = answerMatches(input, answer);
+  vocabState.revealed = true;
+  vocabState.lastInput = input;
+  vocabState.lastCorrect = correct;
+  recordAnswer(item.id, correct);
+  if (correct) celebrate();
+  renderHeaderStats();
+  renderVocabPractice(false);
+};
+
+window.skipVocab = function() {
+  vocabState.revealed = true;
+  vocabState.lastInput = "";
+  vocabState.lastCorrect = false;
+  recordAnswer(vocabState.item.id, false);
+  renderHeaderStats();
+  renderVocabPractice(false);
+};
+
+window.toggleVocabDirection = function() {
+  state.vocabDirection = state.vocabDirection === "en-es" ? "es-en" : "en-es";
+  save();
+  renderVocabPractice(true);
+};
+
+/* =========================================================================
+   STEMS MODE - multiple choice
+   ========================================================================= */
+let stemsState = null;
+
+function renderStemsPractice(forceNew=true) {
+  if (forceNew) {
+    const id = pickWeighted(stemIds());
+    const item = STEM_PAIRS.find(s => s.id === id);
+    // 4 choices: correct stem + 3 random distractors
+    const others = STEM_PAIRS.filter(s => s.id !== id);
+    shuffle(others);
+    const choices = [item, ...others.slice(0,3)];
+    shuffle(choices);
+    stemsState = { item, choices, picked:null };
+  }
+  const { item, choices, picked } = stemsState;
+  const p = state.progress[item.id] || { streak:0, total:0 };
+  const streakClass = p.streak >= 1 ? "hot" : "";
+
+  content.innerHTML = `
+    <div class="q-frame">
+      <div class="q-meta">
+        <div>Verb Stems • match infinitive → stem</div>
+        <div class="streak ${streakClass}">${p.streak >= 1 ? "🔥" : "•"} streak: ${p.streak}</div>
+      </div>
+      <div class="q-card">
+        <div class="q-prompt-tag">Infinitive</div>
+        <div class="q-prompt">${item.inf}</div>
+        ${picked && item.note ? `<div class="q-answer"><div class="note">📝 ${item.note}</div></div>` : ""}
+      </div>
+
+      <div class="choice-grid">
+        ${choices.map((c, i) => {
+          let cls = "";
+          if (picked) {
+            if (c.stem === item.stem) cls = "right";
+            else if (c.stem === picked) cls = "wrong";
+            cls += " disabled";
+          }
+          return `
+            <button class="choice ${cls}" onclick="pickStem('${c.stem}')">
+              <span class="badge">${String.fromCharCode(65+i)}</span>
+              <span>${c.stem}</span>
+            </button>
+          `;
+        }).join("")}
+      </div>
+
+      ${picked ? `
+        <div class="btn-row">
+          <button class="btn dark full" onclick="renderStemsPractice(true)">Next →</button>
+        </div>
+      ` : ""}
+    </div>
+  `;
+}
+
+window.pickStem = function(stem) {
+  if (stemsState.picked) return;
+  stemsState.picked = stem;
+  const correct = stem === stemsState.item.stem;
+  recordAnswer(stemsState.item.id, correct);
+  if (correct) celebrate();
+  renderHeaderStats();
+  renderStemsPractice(false);
+};
+
+/* =========================================================================
+   CONJUGATION MODE - typed
+   ========================================================================= */
+let conjState = null;
+
+function renderConjPractice(forceNew=true) {
+  if (forceNew) {
+    const id = pickWeighted(conjIds());
+    const item = CONJUGATIONS.find(c => c.id === id);
+    conjState = { item, revealed:false, lastInput:"", lastCorrect:null };
+  }
+  const { item, revealed, lastInput, lastCorrect } = conjState;
+  const p = state.progress[item.id] || { streak:0, total:0 };
+  const streakClass = p.streak >= 1 ? "hot" : "";
+
+  let cardClass = "";
+  if (revealed) cardClass = lastCorrect ? "correct" : "incorrect";
+
+  content.innerHTML = `
+    <div class="q-frame">
+      <div class="q-meta">
+        <div>Conjugation • preterite</div>
+        <div class="streak ${streakClass}">${p.streak >= 1 ? "🔥" : "•"} streak: ${p.streak}</div>
+      </div>
+
+      <div class="q-card ${cardClass}">
+        <div class="q-prompt-tag">Conjugate</div>
+        <div class="q-prompt">${item.verb}<span class="pronoun-tag">${item.person}</span><span class="small">stem: ${item.stem}</span></div>
+
+        ${revealed ? `
+          <div class="q-answer">
+            <div class="label">Answer</div>
+            <div class="answer-text">${highlightAccents(item.answer)}</div>
+            ${item.note ? `<div class="note">📝 ${item.note}</div>` : ""}
+            ${lastCorrect===false && lastInput ? `<div class="q-your">You wrote: <span class="you-said">${escapeHtml(lastInput)}</span></div>` : ""}
+          </div>
+        ` : ""}
+      </div>
+
+      ${!revealed ? `
+        <div class="input-row">
+          <input type="text" id="conjInput" placeholder="Type the conjugated form…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        </div>
+        ${renderAccentBar("conjInput")}
+        <div class="btn-row">
+          <button class="btn primary full" onclick="submitConj()">Check</button>
+        </div>
+        <div class="btn-row">
+          <button class="btn outline full" onclick="skipConj()">Don't know — show me</button>
+        </div>
+      ` : `
+        <div class="btn-row">
+          <button class="btn dark full" onclick="renderConjPractice(true)">Next →</button>
+        </div>
+      `}
+    </div>
+  `;
+  if (!revealed) {
+    setTimeout(() => {
+      const inp = $("conjInput");
+      if (inp) {
+        inp.focus();
+        inp.addEventListener("keydown", e => { if (e.key === "Enter") submitConj(); });
+      }
+    }, 50);
+  }
+}
+
+window.submitConj = function() {
+  const input = $("conjInput").value;
+  const { item } = conjState;
+  const correct = answerMatches(input, item.answer);
+  conjState.revealed = true;
+  conjState.lastInput = input;
+  conjState.lastCorrect = correct;
+  recordAnswer(item.id, correct);
+  if (correct) celebrate();
+  renderHeaderStats();
+  renderConjPractice(false);
+};
+
+window.skipConj = function() {
+  conjState.revealed = true;
+  conjState.lastInput = "";
+  conjState.lastCorrect = false;
+  recordAnswer(conjState.item.id, false);
+  renderHeaderStats();
+  renderConjPractice(false);
+};
+
+/* =========================================================================
+   ACCENT INPUT BAR
+   ========================================================================= */
+function renderAccentBar(targetId) {
+  const chars = ["á","é","í","ó","ú","ñ","¿","¡"];
+  return `<div class="accent-bar">
+    ${chars.map(c => `<button onclick="insertChar('${targetId}','${c}')">${c}</button>`).join("")}
+  </div>`;
+}
+window.insertChar = function(targetId, c) {
+  const el = $(targetId);
+  if (!el) return;
+  const start = el.selectionStart, end = el.selectionEnd;
+  el.value = el.value.slice(0, start) + c + el.value.slice(end);
+  el.focus();
+  el.setSelectionRange(start+1, start+1);
+};
+
+/* =========================================================================
+   MOCK TEST
+   ========================================================================= */
+let testState = null;
+
+function renderTestStart() {
+  const r = readyData();
+  const lastTest = state.testHistory[state.testHistory.length-1];
+  let history = "";
+  if (state.testHistory.length > 0) {
+    const recent = state.testHistory.slice(-5).reverse();
+    history = `
+      <h3 class="ref-h" style="margin-top:24px;">Recent tests</h3>
+      <table class="ref-table">
+        <tr><th>When</th><th>Score</th><th>Result</th></tr>
+        ${recent.map(t => {
+          const pct = Math.round(t.score / t.total * 100);
+          const passed = pct >= TEST_PASS*100;
+          return `<tr>
+            <td>${new Date(t.date).toLocaleDateString(undefined, {month:"short", day:"numeric"})}, ${new Date(t.date).toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"})}</td>
+            <td><strong>${t.score}/${t.total}</strong> (${pct}%)</td>
+            <td>${passed ? "<span style='color:var(--green);font-weight:700;'>PASS ✓</span>" : "<span style='color:var(--red);font-weight:700;'>retake</span>"}</td>
+          </tr>`;
+        }).join("")}
+      </table>
+    `;
+  }
+  content.innerHTML = `
+    <div class="q-frame">
+      <div class="q-card">
+        <div class="q-prompt-tag">Mock Test</div>
+        <div class="q-prompt">Ready to test yourself?</div>
+        <div style="color:var(--ink-muted); margin-top:14px; font-size:15px; line-height:1.5;">
+          • <strong>${TEST_LENGTH} questions</strong> — mix of vocab, stems, and conjugation<br>
+          • Pass with <strong>${Math.round(TEST_PASS*100)}%</strong> or higher to count<br>
+          • Pass once + master 90% of items = test ready 🎯
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn teal full" onclick="startTest()">Start mock test →</button>
+      </div>
+      ${history}
+    </div>
+  `;
+}
+
+function startTest() {
+  // Build a balanced test: ~10 vocab, ~5 stems, ~10 conjugation
+  const vQs = sample(vocabIds(), 10).map(id => {
+    const item = VOCAB.find(v=>v.id===id);
+    // Random direction per question
+    const dir = Math.random() < 0.5 ? "en-es" : "es-en";
+    return {
+      kind:"vocab", id, item, dir,
+      prompt: dir==="en-es" ? item.en : item.es,
+      answer: dir==="en-es" ? item.es : item.en,
+      promptLabel: dir==="en-es" ? "English → Spanish" : "Español → English",
+    };
+  });
+  const sQs = sample(stemIds(), 5).map(id => {
+    const item = STEM_PAIRS.find(s=>s.id===id);
+    const others = STEM_PAIRS.filter(s=>s.id!==id);
+    shuffle(others);
+    const choices = [item, ...others.slice(0,3)];
+    shuffle(choices);
+    return { kind:"stem", id, item, choices };
+  });
+  const cQs = sample(conjIds(), 10).map(id => {
+    const item = CONJUGATIONS.find(c=>c.id===id);
+    return { kind:"conj", id, item };
+  });
+  const all = [...vQs, ...sQs, ...cQs];
+  shuffle(all);
+
+  testState = {
+    questions: all,
+    idx: 0,
+    answers: [],   // [{id, kind, correct, given, expected}]
+    score: 0,
+    finished: false,
+  };
+  renderTestQuestion();
+}
+window.startTest = startTest;
+
+function renderTestQuestion() {
+  if (testState.finished) { renderTestResults(); return; }
+  const q = testState.questions[testState.idx];
+  const num = testState.idx + 1;
+  const total = testState.questions.length;
+
+  let body;
+  if (q.kind === "vocab") {
+    body = `
+      <div class="q-card">
+        <div class="q-prompt-tag">${q.promptLabel}</div>
+        <div class="q-prompt">${q.prompt}</div>
+      </div>
+      <div class="input-row">
+        <input type="text" id="testInput" placeholder="Type your answer…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      </div>
+      ${renderAccentBar("testInput")}
+      <div class="btn-row">
+        <button class="btn primary full" onclick="submitTestVocab()">Submit</button>
+      </div>
+    `;
+  } else if (q.kind === "stem") {
+    body = `
+      <div class="q-card">
+        <div class="q-prompt-tag">Match the stem</div>
+        <div class="q-prompt">${q.item.inf}</div>
+      </div>
+      <div class="choice-grid">
+        ${q.choices.map((c,i) => `
+          <button class="choice" onclick="submitTestStem('${c.stem}')">
+            <span class="badge">${String.fromCharCode(65+i)}</span>
+            <span>${c.stem}</span>
+          </button>
+        `).join("")}
+      </div>
+    `;
+  } else {
+    body = `
+      <div class="q-card">
+        <div class="q-prompt-tag">Conjugate (preterite)</div>
+        <div class="q-prompt">${q.item.verb}<span class="pronoun-tag">${q.item.person}</span></div>
+      </div>
+      <div class="input-row">
+        <input type="text" id="testInput" placeholder="Type the conjugated form…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      </div>
+      ${renderAccentBar("testInput")}
+      <div class="btn-row">
+        <button class="btn primary full" onclick="submitTestConj()">Submit</button>
+      </div>
+    `;
+  }
+
+  content.innerHTML = `
+    <div class="test-progress">
+      <span class="pill">Question ${num} of ${total}</span>
+      <span class="score-pill">${testState.score}/${num-1} so far</span>
+    </div>
+    ${body}
+  `;
+  if (q.kind !== "stem") {
+    setTimeout(() => {
+      const inp = $("testInput");
+      if (inp) {
+        inp.focus();
+        inp.addEventListener("keydown", e => { if (e.key === "Enter") {
+          if (q.kind === "vocab") submitTestVocab(); else submitTestConj();
+        }});
+      }
+    }, 50);
+  }
+}
+
+window.submitTestVocab = function() {
+  const q = testState.questions[testState.idx];
+  const input = $("testInput").value;
+  const correct = answerMatches(input, q.answer);
+  testState.answers.push({ id:q.id, kind:"vocab", correct, given:input, expected:q.answer, prompt:q.prompt });
+  if (correct) testState.score++;
+  recordAnswer(q.id, correct);
+  advanceTest();
+};
+window.submitTestStem = function(stem) {
+  const q = testState.questions[testState.idx];
+  const correct = stem === q.item.stem;
+  testState.answers.push({ id:q.id, kind:"stem", correct, given:stem, expected:q.item.stem, prompt:q.item.inf });
+  if (correct) testState.score++;
+  recordAnswer(q.id, correct);
+  advanceTest();
+};
+window.submitTestConj = function() {
+  const q = testState.questions[testState.idx];
+  const input = $("testInput").value;
+  const correct = answerMatches(input, q.item.answer);
+  testState.answers.push({ id:q.id, kind:"conj", correct, given:input, expected:q.item.answer, prompt:`${q.item.verb} (${q.item.person})` });
+  if (correct) testState.score++;
+  recordAnswer(q.id, correct);
+  advanceTest();
+};
+
+function advanceTest() {
+  testState.idx++;
+  if (testState.idx >= testState.questions.length) {
+    testState.finished = true;
+    state.testHistory.push({
+      date: Date.now(),
+      score: testState.score,
+      total: testState.questions.length,
+    });
+    save();
+    renderHeaderStats();
+    renderTestResults();
+  } else {
+    renderTestQuestion();
+  }
+}
+
+function renderTestResults() {
+  const score = testState.score;
+  const total = testState.questions.length;
+  const pct = Math.round(score/total * 100);
+  const passed = pct >= TEST_PASS*100;
+  const verdict = passed
+    ? (pct === 100 ? "Perfect! 💯" : pct >= 95 ? "Excellent!" : "You passed! 🎉")
+    : (pct >= 70 ? "Almost — try again" : "Keep practicing");
+  const misses = testState.answers.filter(a => !a.correct);
+
+  content.innerHTML = `
+    <div class="test-results">
+      <div class="big-score">${pct}%</div>
+      <div class="verdict" style="color:${passed ? "var(--green)" : "var(--red)"};">${verdict}</div>
+      <div style="color:var(--ink-muted); margin-top:6px;">${score} of ${total} correct</div>
+
+      ${passed ? `<div style="margin-top:14px;background:#e7f4dd;border:1px solid rgba(79,140,47,.3);border-radius:10px;padding:10px;color:var(--green);font-weight:600;">✓ Counts toward test readiness</div>` : ""}
+
+      ${misses.length > 0 ? `
+        <div class="breakdown">
+          <h3 class="ref-h" style="margin-top:24px; font-size:18px;">Review what you missed</h3>
+          ${misses.map(a => `
+            <div class="row miss">
+              <div>
+                <strong>${escapeHtml(a.prompt)}</strong>
+                <div style="font-size:13px;color:var(--ink-muted);">You: <em>${escapeHtml(a.given || "(blank)")}</em></div>
+              </div>
+              <div style="text-align:right; font-weight:700;">${highlightAccents(a.expected)}</div>
+            </div>
+          `).join("")}
+        </div>
+      ` : ""}
+    </div>
+    <div class="btn-row" style="margin-top:18px;">
+      <button class="btn outline" onclick="setTab('home')">Home</button>
+      <button class="btn teal" onclick="startTest()">Take another →</button>
+    </div>
+  `;
+}
+
+/* =========================================================================
+   REFERENCE / CHEAT SHEET
+   ========================================================================= */
+function renderReference() {
+  content.innerHTML = `
+    <div class="ref-section">
+      <h3 class="ref-h">Irregular preterite endings</h3>
+      <p style="color:var(--ink-muted); font-size:14px;">Stick these onto an irregular stem:</p>
+      <div class="endings-grid">
+        <div>yo<br><span>-e</span></div>
+        <div>nosotros<br><span>-imos</span></div>
+        <div>tú<br><span>-iste</span></div>
+        <div>vosotros<br><span>-isteis</span></div>
+        <div>él/ella/Ud.<br><span>-o</span></div>
+        <div>ellos/Uds.<br><span>-ieron</span></div>
+      </div>
+    </div>
+
+    <div class="ref-section">
+      <h3 class="ref-h">The 15 verbs</h3>
+      <table class="ref-table">
+        <tr><th>Infinitive</th><th>Stem</th><th>Note</th></tr>
+        ${VERBS.map(v => `
+          <tr>
+            <td>${v.inf}</td>
+            <td><span class="stem">${v.stem}</span></td>
+            <td>${v.note ? `<span class="note">${v.note}</span>` : ""}</td>
+          </tr>
+        `).join("")}
+      </table>
+    </div>
+
+    <div class="ref-section">
+      <h3 class="ref-h">Tricky rules</h3>
+      <div class="ref-rule"><strong>HACER:</strong> the él/ella/Ud. form is <em>hizo</em> — c becomes z to keep the soft sound.</div>
+      <div class="ref-rule"><strong>-J stems</strong> (decir → dij-, traer → traj-, conducir/producir/traducir → -duj-): the ellos form drops the i. So it's <em>dijeron</em>, not <em>dijieron</em>.</div>
+      <div class="ref-rule"><strong>No accent marks</strong> on irregular preterite endings (unlike regular preterites). It's <em>tuvo</em>, not <em>tuvó</em>.</div>
+      <div class="ref-rule"><strong>Querer in preterite</strong> often means "tried to" — and <em>no quise</em> = "refused to". <strong>Saber in preterite</strong> often means "found out".</div>
+    </div>
+
+    <div class="ref-section">
+      <h3 class="ref-h">Full conjugation chart</h3>
+      <table class="ref-table" style="font-size:14px;">
+        <tr><th>Verb</th><th>yo</th><th>tú</th><th>él</th><th>nos.</th><th>vos.</th><th>ellos</th></tr>
+        ${VERBS.map(v => {
+          const forms = PERSONS.map(p => buildConjugation(v, p));
+          return `<tr>
+            <td><strong>${v.inf}</strong></td>
+            ${forms.map(f => `<td>${f}</td>`).join("")}
+          </tr>`;
+        }).join("")}
+      </table>
+    </div>
+
+    <div class="ref-section">
+      <h3 class="ref-h">Vocabulary by category</h3>
+      ${["Phrases","Food","Drinks & Extras","Place Setting","Cuisines"].map(group => `
+        <h4 style="margin-top:14px; font-family:'Fraunces',serif; color:var(--primary);">${group}</h4>
+        <table class="ref-table" style="font-size:14px; margin-top:6px;">
+          ${VOCAB.filter(v => v.group === group).map(v => `
+            <tr><td>${v.en}</td><td><strong>${v.es}</strong></td></tr>
+          `).join("")}
+        </table>
+      `).join("")}
+    </div>
+  `;
+}
+
+/* =========================================================================
+   UTILITIES
+   ========================================================================= */
+function shuffle(a) {
+  for (let i=a.length-1; i>0; i--) {
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+function sample(arr, n) {
+  const copy = [...arr];
+  shuffle(copy);
+  return copy.slice(0, n);
+}
+function escapeHtml(s) {
+  return (s||"").toString().replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function celebrate() {
+  const emojis = ["🌶️","✨","🎉","⭐","🔥","🌮"];
+  for (let i=0; i<10; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    c.style.left = Math.random()*100 + "%";
+    c.style.animationDelay = Math.random()*0.3 + "s";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 2000);
+  }
+}
+function showToast(msg) {
+  const t = document.createElement("div");
+  t.className = "toast";
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2000);
+}
+
+window.resetAll = function() {
+  if (!confirm("Reset all your progress? You can't undo this.")) return;
+  state = {
+    progress: defaultProgress(),
+    vocabDirection: "en-es",
+    testHistory: [],
+  };
+  save();
+  renderHeaderStats();
+  setTab("home");
+  showToast("Progress reset");
+};
+
+/* =========================================================================
+   INIT
+   ========================================================================= */
+document.querySelectorAll("nav.tabs button").forEach(b => {
+  b.addEventListener("click", () => setTab(b.dataset.tab));
+});
+renderHeaderStats();
+setTab("home");
+</script>
+</body>
+</html>
